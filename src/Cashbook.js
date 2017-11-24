@@ -9,6 +9,12 @@ class Cashbook extends Component {
         }
     }
 
+    deleteRecord(recordToDelete){
+        this.setState({
+            records : this.state.records.filter(record => record !== recordToDelete)
+        })
+    }
+
     render() {
         return (
             <div className="Cashbook">
@@ -20,7 +26,7 @@ class Cashbook extends Component {
                     {this.state.records.map((record, index) =>
                         <li key={index}>
                             {record}
-                            <button aria-label="delete" className="delete">-</button>
+                            <button aria-label="delete" className="delete" onClick={() => this.deleteRecord(record)}>-</button>
                         </li>)}
                 </ul>
             </div>

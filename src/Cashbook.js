@@ -21,7 +21,9 @@ class Cashbook extends Component {
 
     createRecord() {
         this.setState({
-            records: this.state.records.concat({title: "new"})
+            records: this.state.records.concat({
+                title: ""
+            })
         })
     }
 

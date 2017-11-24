@@ -1,7 +1,24 @@
+$small-radius: 4px;
+
 .Cashbook {
   .Cashbook-header {
     border: solid 1px black;
     overflow: hidden;
     padding: 1em;
+  }
+
+  .Cashbook-records {
+    border: solid 1px black;
+    border-radius: 0 0 $small-radius $small-radius;
+    list-style: none;
+    padding:0;
+    margin:-1px 0 0;
+
+    li{
+      border: solid 1px black;
+      border-radius: $small-radius;
+      margin:.2em;
+      padding:.5em;
+    }
   }
 }

@@ -6,7 +6,10 @@ class Cashbook extends Component {
     constructor(){
         super();
         this.state = {
-            records : ["foo","bar"]
+            records : [
+                {title : "foo"},
+                {title : "bar"}
+            ]
         }
     }
 
@@ -18,7 +21,7 @@ class Cashbook extends Component {
 
     addRecord() {
         this.setState({
-            records : this.state.records.concat("new")
+            records : this.state.records.concat({title : "new"})
         })
     }
 

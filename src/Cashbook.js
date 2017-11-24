@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Cashbook.css';
+import Record from "./Record";
 
 class Cashbook extends Component {
     constructor(){
@@ -22,13 +23,15 @@ class Cashbook extends Component {
                     <h1 className="Cashbook-title">Cashbook</h1>
                     yet another cashbook
                 </header>
-                <ul className="Cashbook-records">
-                    {this.state.records.map((record, index) =>
-                        <li key={index}>
-                            {record}
-                            <button aria-label="delete" className="delete" onClick={() => this.deleteRecord(record)}>-</button>
-                        </li>)}
-                </ul>
+                <div className="Cashbook-records">
+                    <ul>
+                        {this.state.records.map((record, index) =>
+                            <li key={index}>
+                                <Record deleteRecord={record => this.deleteRecord(record)} data={record} />
+                            </li>
+                        )}
+                    </ul>
+                </div>
             </div>
         );
     }

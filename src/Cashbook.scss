@@ -1,4 +1,4 @@
-$small-radius: 4px;
+@import 'common-values.scss';
 
 .Cashbook {
   .Cashbook-header {
@@ -10,23 +10,15 @@ $small-radius: 4px;
   .Cashbook-records {
     border: solid 1px black;
     border-radius: 0 0 $small-radius $small-radius;
-    list-style: none;
-    padding:0;
     margin:-1px 0 0;
+    text-align:center;
 
-    li{
-      border: solid 1px black;
-      border-radius: $small-radius;
-      margin:.2em;
-      padding:.5em;
+    ul{
+      list-style: none;
+      padding:0;
+      margin:0;
+    }
 
-      .delete {
-        float: right;
-        border: solid 1px black;
-        border-radius: 50%;
-        width: 2em;
-        height: 2em;
-      }
     }
   }
 }

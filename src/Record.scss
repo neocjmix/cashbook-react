@@ -1,0 +1,16 @@
+@import 'common-values.scss';
+
+.Record{
+  border: solid 1px black;
+  border-radius: $small-radius;
+  margin:.2em;
+  padding:.5em;
+
+  .delete {
+    float: right;
+    border: solid 1px black;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+  }
+}

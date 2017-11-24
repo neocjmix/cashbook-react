@@ -3,25 +3,25 @@ import './Cashbook.css';
 import Record from "./Record";
 
 class Cashbook extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            records : [
-                {title : "foo"},
-                {title : "bar"}
+            records: [
+                {title: "foo"},
+                {title: "bar"}
             ]
         }
     }
 
-    deleteRecord(recordToDelete){
+    deleteRecord(recordToDelete) {
         this.setState({
-            records : this.state.records.filter(record => record !== recordToDelete)
+            records: this.state.records.filter(record => record !== recordToDelete)
         })
     }
 
-    addRecord() {
+    createRecord() {
         this.setState({
-            records : this.state.records.concat({title : "new"})
+            records: this.state.records.concat({title: "new"})
         })
     }
 
@@ -36,11 +36,11 @@ class Cashbook extends Component {
                     <ul>
                         {this.state.records.map((record, index) =>
                             <li key={index}>
-                                <Record deleteRecord={record => this.deleteRecord(record)} data={record} />
+                                <Record deleteRecord={record => this.deleteRecord(record)} data={record}/>
                             </li>
                         )}
                     </ul>
-                    <button className="Cashbook-add-record" onClick={e=> this.addRecord()}>+</button>
+                    <button className="Cashbook-add-record" onClick={e => this.createRecord()}>+</button>
                 </div>
             </div>
         );

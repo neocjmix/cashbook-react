@@ -17,7 +17,11 @@ class Cashbook extends Component {
                     yet another cashbook
                 </header>
                 <ul className="Cashbook-records">
-                    {this.state.records.map(record => <li>{record}</li>)}
+                    {this.state.records.map((record, index) =>
+                        <li key={index}>
+                            {record}
+                            <button aria-label="delete" className="delete">-</button>
+                        </li>)}
                 </ul>
             </div>
         );

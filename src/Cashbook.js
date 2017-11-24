@@ -16,6 +16,12 @@ class Cashbook extends Component {
         })
     }
 
+    addRecord() {
+        this.setState({
+            records : this.state.records.concat("new")
+        })
+    }
+
     render() {
         return (
             <div className="Cashbook">
@@ -31,6 +37,7 @@ class Cashbook extends Component {
                             </li>
                         )}
                     </ul>
+                    <button className="Cashbook-add-record" onClick={e=> this.addRecord()}>+</button>
                 </div>
             </div>
         );

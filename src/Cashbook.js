@@ -25,6 +25,15 @@ class Cashbook extends Component {
         })
     }
 
+    updateRecord(recordToUpdate, updateData) {
+        this.setState({
+            records: this.state.records.map(record => {
+                if(record !== recordToUpdate) return record;
+                return Object.assign({}, record, updateData);
+            })
+        })
+    }
+
     render() {
         return (
             <div className="Cashbook">
@@ -36,7 +45,11 @@ class Cashbook extends Component {
                     <ul>
                         {this.state.records.map((record, index) =>
                             <li key={index}>
-                                <Record deleteRecord={record => this.deleteRecord(record)} data={record}/>
+                                <Record
+                                    data={record}
+                                    deleteRecord={record => this.deleteRecord(record)}
+                                    updateRecord={updateData => this.updateRecord(record, updateData)}
+                                />
                             </li>
                         )}
                     </ul>

@@ -6,10 +6,7 @@ class Cashbook extends Component {
     constructor() {
         super();
         this.state = {
-            records: [
-                {title: "foo"},
-                {title: "bar"}
-            ]
+            records: []
         }
     }
 

@@ -7,8 +7,13 @@ class Cashbook extends Component {
     constructor() {
         super();
         this.state = {
-            records: []
+            records: [],
+            offset : 0
         }
+    }
+
+    setOffset(amount){
+        // this.setState({current : amount})
     }
 
     deleteRecord(recordToDelete) {
@@ -32,10 +37,28 @@ class Cashbook extends Component {
     updateRecord(recordToUpdate, updateData) {
         this.setState({
             records: this.state.records.map(record => {
-                if(record !== recordToUpdate) return record;
-                return Object.assign({}, record, updateData);
-            })
+            if(record !== recordToUpdate) return record;
+            return Object.assign({}, record, updateData);
         })
+        })
+    }
+
+    getIncome(){
+        return this.state.records
+            .filter(record => record.isIncome)
+            .map(record => record.amount)
+            .reduce((a, b) => a + b*1, 0);
+    }
+
+    getExpenditure(){
+        return this.state.records
+            .filter(record => !record.isIncome)
+            .map(record => record.amount)
+            .reduce((a, b) => a + b*1, 0);
+    }
+
+    getSum() {
+        return this.getIncome() - this.getExpenditure();
     }
 
     render() {
@@ -43,7 +66,13 @@ class Cashbook extends Component {
             <div className="Cashbook">
                 <header className="Cashbook-header">
                     <h1 className="Cashbook-title">Cashbook</h1>
-                    yet another cashbook
+                    <span className="Cashbook-desc">yet another cashbook</span>
+                    <div className="Cashbook-sum">
+                        <span className="Cashbook-income">{this.getIncome()}</span>&nbsp;-&nbsp;
+                        <span className="Cashbook-expenditure">{this.getExpenditure()}</span>&nbsp;=&nbsp;
+                        <input className="Cashbook-current" type="number" name={"Cashbook-current"}
+                               value={this.getSum()} onChange={e => this.setOffset(e.target.value)} />
+                    </div>
                 </header>
                 <div className="Cashbook-records">
                     <button className="Cashbook-add-record" onClick={e => this.createRecord()}>+</button>

@@ -25,7 +25,7 @@ class Record extends Component {
                 수입
             </label>
             <input type="text" className="record-title" name={"record-" + data.id + "-title"}
-                   value={data.title} placeholder="title"
+                   value={data.title} placeholder="항목"
                    onChange={e => this.props.updateRecord({title : e.target.value})} />
             <input type="number" className="record-amount" name={"record-" + data.id + "-amount"}
                    value={data.amount}

@@ -4,9 +4,11 @@ import './Cashbook.css';
 import Record from "./Record";
 
 class Cashbook extends Component {
+    LOCAL_STORAGE_KEY = "cachbook";
+
     constructor() {
         super();
-        this.state = {
+        this.state = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEY)) || {
             records: [],
             offset : 0
         }
@@ -24,22 +26,22 @@ class Cashbook extends Component {
 
     createRecord() {
         this.setState({
-            records: [{
+            records: this.state.records.concat({
                 id : this.state.records.length > 0  ? this.state.records[this.state.records.length - 1].id + 1 : 0,
-                date : DateTime.local(),
+                date : DateTime.local().toISODate(),
                 isIncome : false,
                 title : "",
                 amount : 0
-            }].concat(this.state.records)
+            })
         })
     }
 
     updateRecord(recordToUpdate, updateData) {
         this.setState({
             records: this.state.records.map(record => {
-            if(record !== recordToUpdate) return record;
-            return Object.assign({}, record, updateData);
-        })
+                if(record !== recordToUpdate) return record;
+                return Object.assign({}, record, updateData);
+            })
         })
     }
 
@@ -61,6 +63,10 @@ class Cashbook extends Component {
         return this.getIncome() - this.getExpenditure();
     }
 
+    componentWillUpdate(nextProps, nextState){
+        localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(nextState));
+    }
+
     render() {
         return (
             <div className="Cashbook">
@@ -77,7 +83,7 @@ class Cashbook extends Component {
                 <div className="Cashbook-records">
                     <button className="Cashbook-add-record" onClick={e => this.createRecord()}>+</button>
                     <ul>
-                        {this.state.records.map((record, index) =>
+                        {this.state.records.slice().reverse().map((record, index) =>
                             <li key={index}>
                                 <Record
                                     data={record}

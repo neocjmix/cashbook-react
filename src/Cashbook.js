@@ -19,6 +19,8 @@ class Cashbook extends Component {
     createRecord() {
         this.setState({
             records: this.state.records.concat({
+                id : this.state.records.length > 0  ? this.state.records[this.state.records.length - 1].id + 1 : 0,
+                isIncome : false,
                 title : "",
                 amount : 0
             })

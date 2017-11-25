@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {DateTime} from 'luxon';
 import './Cashbook.css';
 import Record from "./Record";
 
@@ -18,12 +19,13 @@ class Cashbook extends Component {
 
     createRecord() {
         this.setState({
-            records: this.state.records.concat({
+            records: [{
                 id : this.state.records.length > 0  ? this.state.records[this.state.records.length - 1].id + 1 : 0,
+                date : DateTime.local(),
                 isIncome : false,
                 title : "",
                 amount : 0
-            })
+            }].concat(this.state.records)
         })
     }
 
@@ -44,6 +46,7 @@ class Cashbook extends Component {
                     yet another cashbook
                 </header>
                 <div className="Cashbook-records">
+                    <button className="Cashbook-add-record" onClick={e => this.createRecord()}>+</button>
                     <ul>
                         {this.state.records.map((record, index) =>
                             <li key={index}>
@@ -55,7 +58,6 @@ class Cashbook extends Component {
                             </li>
                         )}
                     </ul>
-                    <button className="Cashbook-add-record" onClick={e => this.createRecord()}>+</button>
                 </div>
             </div>
         );

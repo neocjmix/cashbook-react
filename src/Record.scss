@@ -7,12 +7,25 @@
   padding: .5em;
   text-align: left;
   display: flex;
+  align-items: center;
+
+  .record-date {
+    border: none;
+    padding : 0;
+    font-size: 1em;
+    font-family: sans-serif;
+  }
 
   .record-inout {
     border: none;
     padding : 0;
     font-size: 1em;
     margin-right: .5em;
+
+    input{
+      font-size: 1em;
+      margin:0;
+    }
   }
 
   .record-title {
@@ -24,6 +37,7 @@
 
     &:focus{
       border-bottom : solid 1px black;
+      margin-top: 1px;
       outline: none;
     }
   }
@@ -37,6 +51,7 @@
 
     &:focus{
       border-bottom : solid 1px black;
+      margin-top: 1px;
       outline: none;
     }
   }

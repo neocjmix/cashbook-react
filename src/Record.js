@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {DateTime} from 'luxon';
 import './Record.css';
 
 class Record extends Component {
@@ -6,6 +7,9 @@ class Record extends Component {
         const data = this.props.data;
 
         return <div className="Record">
+            <input className="record-date" type="date" name={"record-" + data.id + "-date"}
+                   value={data.date.toISODate()}
+                   onChange={e => this.props.updateRecord({date: DateTime.fromISO(e.target.value)})}/>
             <label className="record-inout" htmlFor={"record-out-" + data.id}>
                 <input type="radio" name={"record-" + data.id + "-inout"}
                        id={"record-out-" + data.id} autoFocus

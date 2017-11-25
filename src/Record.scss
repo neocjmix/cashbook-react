@@ -21,6 +21,19 @@
     }
   }
 
+  input[name=amount]{
+    flex: 1;
+    border: none;
+    padding : 0;
+    font-size: 1em;
+    margin-right: 1em;
+
+    &:focus{
+      border-bottom : solid 1px black;
+      outline: none;
+    }
+  }
+
   .delete {
     float: right;
     border: solid 1px black;

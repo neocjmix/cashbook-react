@@ -2,6 +2,14 @@ import React, {Component} from 'react';
 import './Record.css';
 
 class Record extends Component {
+    componentDidMount(){
+        if(this.props.index === 0) this.firstInput.focus();
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        if(nextProps.data.id !== this.props.data.id && nextProps.index === 0) this.firstInput.focus();
+    }
+
     render() {
         const data = this.props.data;
 
@@ -11,8 +19,9 @@ class Record extends Component {
                    onChange={e => this.props.updateRecord({date: e.target.value})}/>
             <label className="record-inout" htmlFor={"record-out-" + data.id}>
                 <input type="radio" name={"record-" + data.id + "-inout"}
-                       id={"record-out-" + data.id} autoFocus
+                       id={"record-out-" + data.id}
                        checked={!data.isIncome}
+                       ref={input => this.firstInput = input}
                        onChange={e => this.props.updateRecord({isIncome: !e.target.checked})}/>
                 지출
             </label>

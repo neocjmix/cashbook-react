@@ -26,13 +26,13 @@ class Cashbook extends Component {
 
     createRecord() {
         this.setState({
-            records: this.state.records.concat({
-                id : this.state.records.length > 0  ? this.state.records[this.state.records.length - 1].id + 1 : 0,
+            records: [{
+                id : this.state.records.length > 0  ? this.state.records[0].id + 1 : 0,
                 date : DateTime.local().toISODate(),
                 isIncome : false,
                 title : "",
                 amount : 0
-            })
+            }].concat(this.state.records)
         })
     }
 
@@ -83,12 +83,13 @@ class Cashbook extends Component {
                 <div className="Cashbook-records">
                     <button className="Cashbook-add-record" onClick={e => this.createRecord()}>+</button>
                     <ul>
-                        {this.state.records.slice().reverse().map((record, index) =>
+                        {this.state.records.map((record, index) =>
                             <li key={index}>
                                 <Record
                                     data={record}
                                     deleteRecord={record => this.deleteRecord(record)}
                                     updateRecord={updateData => this.updateRecord(record, updateData)}
+                                    index={index}
                                 />
                             </li>
                         )}

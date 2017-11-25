@@ -14,8 +14,8 @@ class Cashbook extends Component {
         }
     }
 
-    setOffset(amount){
-        // this.setState({current : amount})
+    setOffset(newCurrent){
+        this.setState({offset : newCurrent - this.getSum()})
     }
 
     deleteRecord(recordToDelete) {
@@ -74,10 +74,12 @@ class Cashbook extends Component {
                     <h1 className="Cashbook-title">Cashbook</h1>
                     <span className="Cashbook-desc">yet another cashbook</span>
                     <div className="Cashbook-sum">
+                        <span className="Cashbook-offset">{this.state.offset}</span>&nbsp;+&nbsp;
                         <span className="Cashbook-income">{this.getIncome()}</span>&nbsp;-&nbsp;
                         <span className="Cashbook-expenditure">{this.getExpenditure()}</span>&nbsp;=&nbsp;
                         <input className="Cashbook-current" type="number" name={"Cashbook-current"}
-                               value={this.getSum()} onChange={e => this.setOffset(e.target.value)} />
+                               value={this.getSum() + this.state.offset}
+                               onChange={e => this.setOffset(e.target.value)} />
                     </div>
                 </header>
                 <div className="Cashbook-records">
